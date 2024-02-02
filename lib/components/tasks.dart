@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/components/difficulty.dart';
+import 'package:task_manager/data/task_dao.dart';
 
 class Task extends StatefulWidget {
   final String name;
   final String photo;
   final int difficulty;
 
-  Task(this.name, this.photo, this.difficulty, {Key? key}) : super(key: key);
+  Task(this.name, this.photo, this.difficulty, {super.key});
 
   int level = 0;
 
@@ -81,16 +82,19 @@ class _TaskState extends State<Task> {
                       height: 52,
                       width: 82,
                       child: ElevatedButton(
+                        onLongPress: (){
+                          TaskDao().delete(widget.name);
+                        },
                         onPressed: () {
                           setState(() {
                             widget.level++;
                           });
                           //print(level);
                         },
-                        child: Column(
+                        child: const Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.end,
-                          children: const [
+                          children: [
                             Icon(Icons.arrow_drop_up),
                             Text(
                               'Lvl Up',
