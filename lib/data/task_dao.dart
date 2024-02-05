@@ -22,8 +22,8 @@ class TaskDao{
     if(itemExists.isEmpty){
       print('Tarefa não existia.');
       return await bancoDeDados.insert(
-          _tableName,
-          taskMap,
+        _tableName,
+        taskMap,
       );
     } else{
       print('Tarefa já existia.');
@@ -50,7 +50,7 @@ class TaskDao{
     print('Acessando o findAll: ');
     final Database bancoDeDados = await getDatabase();
     final List<Map<String, dynamic>> result =
-        await bancoDeDados.query(_tableName);
+    await bancoDeDados.query(_tableName);
     print('Procurando dados no banco de dados ... encontrado: $result');
     return toList(result);
   }

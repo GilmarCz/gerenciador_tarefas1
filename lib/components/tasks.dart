@@ -82,8 +82,8 @@ class _TaskState extends State<Task> {
                       height: 52,
                       width: 82,
                       child: ElevatedButton(
-                        onLongPress: (){
-                          TaskDao().delete(widget.name);
+                        onLongPress: () {
+                          _showDeleteConfirmationPopup(context);
                         },
                         onPressed: () {
                           setState(() {
@@ -135,6 +135,45 @@ class _TaskState extends State<Task> {
           ),
         ],
       ),
+    );
+  }
+
+  void _showDeleteConfirmationPopup(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Row(
+            children: [
+              Icon(Icons.delete),
+              SizedBox(width: 8),
+              Text('Delete'),
+            ],
+          ),
+          content: const Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text('Tem certeza de que deseja deletar essa Tarefa?'),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Fecha o popup
+              },
+              child: const Text('Cancelar'),
+            ),
+            TextButton(
+              onPressed: () {
+                TaskDao().delete(widget.name);
+                Navigator.of(context).pop(); // Fecha o popup após deletar
+              },
+              child: const Text('Sim'),
+            ),
+          ],
+        );
+      },
     );
   }
 }

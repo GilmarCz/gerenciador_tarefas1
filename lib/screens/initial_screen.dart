@@ -17,10 +17,10 @@ class _InitialScreenState extends State<InitialScreen> {
       appBar: AppBar(
         actions: [
           IconButton(
-              onPressed: () {
-                setState(() {});
-              },
-              icon: Icon(Icons.refresh),
+            onPressed: () {
+              setState(() {});
+            },
+            icon: Icon(Icons.refresh),
           )
         ],
         title: const Text('Tarefas'),
@@ -67,9 +67,9 @@ class _InitialScreenState extends State<InitialScreen> {
                     return ListView.builder(
                       itemCount: items.length,
                       itemBuilder: (
-                        BuildContext context,
-                        int index,
-                      ) {
+                          BuildContext context,
+                          int index,
+                          ) {
                         final Task tarefa = items[index];
                         return tarefa;
                       },
@@ -103,8 +103,8 @@ class _InitialScreenState extends State<InitialScreen> {
               ),
             ),
           ).then((value) => setState(() {
-                print('Recarregando a tela inicial');
-              }));
+            print('Recarregando a tela inicial');
+          }));
         },
         child: const Icon(Icons.add),
       ),
